@@ -4,6 +4,7 @@
 struct page;
 enum vm_type;
 
+/*?왜 아무것도 없지 ㅋㅋ*/
 struct anon_page {
 };
 

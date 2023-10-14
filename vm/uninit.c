@@ -53,7 +53,7 @@ uninit_initialize (struct page *page, void *kva) {
 
 	/* TODO: You may need to fix this function. */
 	return uninit->page_initializer (page, uninit->type, kva) &&
-		(init ? init (page, aux) : true);
+		(init ? init (page, aux) : true);//-<레이지노드 호출하는놈
 }
 
 /* Free the resources hold by uninit_page. Although most of pages are transmuted

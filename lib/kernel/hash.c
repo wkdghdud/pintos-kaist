@@ -21,6 +21,9 @@ static void rehash (struct hash *);
 
 /* Initializes hash table H to compute hash values using HASH and
    compare hash elements using LESS, given auxiliary data AUX. */
+/*hash_hash_func:주어진 aux데이터에서 해시요소에 대한 해시 값을 계산후 변환
+  hash_less_func :해시 요소들을 비교함
+*/
 bool
 hash_init (struct hash *h,
 		hash_hash_func *hash, hash_less_func *less, void *aux) {
