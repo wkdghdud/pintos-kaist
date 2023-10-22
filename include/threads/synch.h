@@ -20,6 +20,7 @@ void sema_self_test (void);
 struct lock {
 	struct thread *holder;      /* Thread holding lock (for debugging). */
 	struct semaphore semaphore; /* Binary semaphore controlling access. */
+	int8_t donation_list[64];
 };
 
 void lock_init (struct lock *);
@@ -37,9 +38,6 @@ void cond_init (struct condition *);
 void cond_wait (struct condition *, struct lock *);
 void cond_signal (struct condition *, struct lock *);
 void cond_broadcast (struct condition *, struct lock *);
-
-/* priority-sema,condvar 관련 변경 */
-bool cmp_sem_priority (const struct list_elem *a, const struct list_elem *b, void *aux);
 
 /* Optimization barrier.
  *

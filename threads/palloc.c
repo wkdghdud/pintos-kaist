@@ -153,6 +153,7 @@ populate_pools (struct area *base_mem, struct area *ext_mem) {
 
 			switch (state) {
 				case KERN:
+					//rem: 커널에 할당하고 싶은 페이지 수
 					if (rem > size_in_pg) {
 						rem -= size_in_pg;
 						break;
@@ -291,6 +292,13 @@ palloc_get_multiple (enum palloc_flags flags, size_t page_cnt) {
    then the page is filled with zeros.  If no pages are
    available, returns a null pointer, unless PAL_ASSERT is set in
    FLAGS, in which case the kernel panics. */
+
+/* 하나의 무료 페이지를 얻고 해당 페이지의 커널 가상 주소를 반환합니다.
+   PAL_USER가 설정된 경우 페이지는 사용자 풀에서 얻어지며,
+   그렇지 않으면 커널 풀에서 얻어집니다. FLAGS에서 PAL_ZERO가 설정된 경우
+   페이지는 0으로 채워집니다. 사용 가능한 페이지가 없는 경우 null 포인터를 반환하며,
+   단 FLAGS에서 PAL_ASSERT가 설정된 경우 커널은 패닉 상태에 빠집니다. */
+
 void *
 palloc_get_page (enum palloc_flags flags) {
 	return palloc_get_multiple (flags, 1);
